@@ -1,6 +1,8 @@
 import './App.css'
-import {Task} from "./types/task.ts";
-import {TasksContainer} from "./components/TasksContainer/TasksContainer.tsx";
+import { Task } from "./types/task.ts";
+import { TasksContainer } from "./components/TasksContainer/TasksContainer.tsx";
+import TopBar from './components/TopBar/TopBar.tsx';
+import AddButton from './components/AddButton/AddButton.tsx';
 
 function App() {
     const tasks: Task[] = [
@@ -32,7 +34,9 @@ function App() {
 
     return (
         <>
-            <TasksContainer tasks={tasks}/>
+            <TopBar />
+            <AddButton />
+            <TasksContainer tasks={tasks} />
         </>
     )
 }

@@ -1,0 +1,9 @@
+#addTask {
+    font-size: 2vb;
+    text-align: center;
+    position: fixed;
+    border-radius: 10vb;
+    margin: 90vh 2vb 0 0;
+    z-index: 1;
+    border: 0.1rem solid black !important;
+}
