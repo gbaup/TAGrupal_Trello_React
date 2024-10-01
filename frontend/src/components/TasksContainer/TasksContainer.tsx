@@ -1,17 +1,16 @@
-import { Task } from "../../types/task.ts";
+import { TaskType } from "../../types/taskType.ts";
 import './TasksContainer.css';
 import { TaskCard } from "../TaskCard/TaskCard.tsx";
 
-export function TasksContainer({ tasks }: { tasks: Task[] }) {
+export function TasksContainer() {
     return (
-        <>
-            <div className="tasks-container">
-                {tasks.map((task: Task) => {
-                    return (
-                        <TaskCard task={task} />
-                    )
-                })}
-            </div>
-        </>
+        <div className="container">
+            <TaskCard title="Backlog" id="backlog" />
+            <TaskCard title="To Do" id="to-do" />
+            <TaskCard title="In Progress" id="in-progress" />
+            <TaskCard title="Blocked" id="blocked" />
+            <TaskCard title="Done" id="done" />
+
+        </div>
     );
 }
