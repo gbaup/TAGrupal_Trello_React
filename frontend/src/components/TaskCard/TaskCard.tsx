@@ -1,14 +1,16 @@
-import { Task } from "../../types/task.ts";
+import { CardType } from "../../types/cardType.ts";
 import { TaskContent } from "../TaskContent/TaskContent.tsx";
 import './TaskCard.css';
+import React from 'react'
 
-export function TaskCard({ task }: { task: Task }) {
+export const TaskCard = ({ title, id }: CardType) => {
     return (
-        <div className="card" id="titulo a poenr">
+        <div className="card" id={id}>
             <div className="card-title">
-                <h2>titulo a poner</h2>
+                <h2>{title}</h2>
             </div>
             <TaskContent />
         </div>
     );
 }
+

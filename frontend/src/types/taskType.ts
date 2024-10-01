@@ -1,4 +1,4 @@
-export interface Task {
+export interface TaskType {
     title: string,
     description: string,
     assignee: string,

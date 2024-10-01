@@ -1,5 +1,5 @@
 import './App.css'
-import { Task } from "./types/task.ts";
+import { Task } from "./types/taskType.ts";
 import { TasksContainer } from "./components/TasksContainer/TasksContainer.tsx";
 import TopBar from './components/TopBar/TopBar.tsx';
 import AddButton from './components/AddButton/AddButton.tsx';
