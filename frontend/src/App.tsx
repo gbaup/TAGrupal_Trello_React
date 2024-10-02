@@ -1,11 +1,12 @@
 import './App.css'
-import { Task } from "./types/taskType.ts";
+import { TaskType } from "./types/taskType.ts";
 import { TasksContainer } from "./components/TasksContainer/TasksContainer.tsx";
 import TopBar from './components/TopBar/TopBar.tsx';
 import AddButton from './components/AddButton/AddButton.tsx';
+import Modal from './components/Modal/Modal.tsx';
 
 function App() {
-    const tasks: Task[] = [
+    const tasks: TaskType[] = [
         {
             title: 'Task 1',
             description: 'Description 1',
@@ -36,7 +37,10 @@ function App() {
         <>
             <TopBar />
             <AddButton />
-            <TasksContainer tasks={tasks} />
+            <TasksContainer />
+
+            <Modal isEdit={false} />
+            <Modal isEdit={true} />
         </>
     )
 }
