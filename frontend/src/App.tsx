@@ -1,8 +1,10 @@
 import './App.css'
-import { Task } from "./types/taskType.ts";
-import { TasksContainer } from "./components/TasksContainer/TasksContainer.tsx";
+import {Task} from "./types/taskType.ts";
+import {TasksContainer} from "./components/TasksContainer/TasksContainer.tsx";
 import TopBar from './components/TopBar/TopBar.tsx';
 import AddButton from './components/AddButton/AddButton.tsx';
+import {Provider} from "react-redux";
+import {store} from "./components/Store/store.ts";
 
 function App() {
     const tasks: Task[] = [
@@ -34,9 +36,11 @@ function App() {
 
     return (
         <>
-            <TopBar />
-            <AddButton />
-            <TasksContainer tasks={tasks} />
+            <Provider store={store}>
+                <TopBar/>
+                <AddButton/>
+                <TasksContainer tasks={tasks}/>
+            </Provider>
         </>
     )
 }

@@ -14,6 +14,7 @@ const taskSlice = createSlice({
     reducers: {
         addTask: (state, action: PayloadAction<string>) => {
             state.tasks.push(action.payload);
+            console.log("Adding task to store", action.payload);
         },
     },
 });
