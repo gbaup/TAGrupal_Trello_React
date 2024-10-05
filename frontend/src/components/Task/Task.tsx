@@ -3,8 +3,14 @@ import "./Task.css"
 import { TaskType } from '../../types/taskType'
 
 export const Task = (task: TaskType) => {
+    const showModal = () => {
+        const modal = document.getElementById('taskModalEdit');
+        modal?.classList.add('is-active');
+    }
+    console.log(task);
+
     return (
-        <div className='task'>
+        <div className='task' onClick={showModal}>
             <h3>{task.title}</h3>
             <p>{task.description}</p>
             <p className='hide'>{task.assignee}</p>

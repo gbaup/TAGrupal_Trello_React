@@ -9,7 +9,7 @@ export const TaskCard = ({ title, id }: CardType) => {
             <div className="card-title">
                 <h2>{title}</h2>
             </div>
-            <TaskContent />
+            <TaskContent title={title} id={id} />
         </div>
     );
 }
