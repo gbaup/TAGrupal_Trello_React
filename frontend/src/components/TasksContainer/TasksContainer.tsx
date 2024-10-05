@@ -8,6 +8,7 @@ export function TasksContainer() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getTasks());
+        console.log("sexo")
     }, []);
 
     return (

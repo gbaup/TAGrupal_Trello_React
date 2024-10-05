@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { TaskType } from './types/taskType';
 
+const URL = 'http://localhost:3000/api'
 // Obtener todas las tareas
 export async function APIgetTasks() {
     try {
-        const response = await fetch("http://localhost:3000/api/tasks");
+        const response = await fetch(URL + "/tasks", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
         if (!response.ok) {
             throw new Error('Error en la solicitud GET');
         }

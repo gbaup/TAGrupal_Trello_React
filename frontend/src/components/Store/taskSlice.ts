@@ -1,37 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TaskType } from '../../types/taskType';
 import { APIgetTasks } from '../../apiInteractions';
+import { Dispatch } from 'redux';
 
-const initialState: TaskType[] =
-    [
-        {
-            id: 1,
-            title: "Task 1",
-            description: "Description 1",
-            assignee: "Assignee 1",
-            endDate: "2021-09-01",
-            priority: "1",
-            status: "to-do"
-        },
-        {
-            id: 2,
-            title: "Task 2",
-            description: "Description 2",
-            assignee: "Assignee 2",
-            endDate: "2021-09-02",
-            priority: "2",
-            status: "in-progress"
-        },
-        {
-            id: 3,
-            title: "Task 3",
-            description: "Description 3",
-            assignee: "Assignee 3",
-            endDate: "2021-09-03",
-            priority: "3",
-            status: "done"
-        },
-    ];
+const initialState: TaskType[] = [];
+
 
 const taskSlice = createSlice({
     name: 'tasks',
@@ -52,8 +25,7 @@ const taskSlice = createSlice({
             console.log("Editing task in store", action.payload.oldTask, action.payload.newTask);
         },
         getTasks: (state) => {
-            APIgetTasks().then(data => { state = data });
-            console.log("Getting tasks from store", state);
+            APIgetTasks().then(data => { state = data }).then(() => console.log("Getting tasks from API", state));
         }
     }
 });
