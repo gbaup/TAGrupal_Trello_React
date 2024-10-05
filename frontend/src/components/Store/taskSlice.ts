@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TaskType } from '../../types/taskType';
-import { APIgetTasks } from '../../apiInteractions';
+import { APIgetTasks } from '../../ApiInteractions';
 import { Dispatch } from 'redux';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
