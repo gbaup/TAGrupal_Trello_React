@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TaskType } from '../../types/taskType';
+import { APIgetTasks } from '../../apiInteractions';
 
 const initialState: TaskType[] =
     [
@@ -51,6 +52,7 @@ const taskSlice = createSlice({
             console.log("Editing task in store", action.payload.oldTask, action.payload.newTask);
         },
         getTasks: (state) => {
+            APIgetTasks().then(data => { state = data });
             console.log("Getting tasks from store", state);
         }
     }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TaskType } from './types/taskType';
 
 // Obtener todas las tareas
-export async function getTasks() {
+export async function APIgetTasks() {
     try {
         const response = await fetch("http://localhost:3000/api/tasks");
         if (!response.ok) {
@@ -16,7 +16,7 @@ export async function getTasks() {
 }
 
 // Crear una nueva tarea
-export async function createTask(task: TaskType) {
+export async function APIcreateTask(task: TaskType) {
     try {
         const response = await fetch("http://localhost:3000/api/tasks", {
             method: 'POST',
