@@ -5,7 +5,7 @@ import { TaskType } from '../../types/taskType'
 import { CardType } from '../../types/cardType'
 
 export const TaskContent = ({ title, id }: CardType) => {
-    const tasks: TaskType[] = useSelector((state: { tasks: TaskType[] }) => state.tasks);
+    const tasks: TaskType[] = useSelector((state: { tasks: TaskType[] }) => state.tasks, (left, right) => left === right);
     console.log(tasks);
     return (
         <div className='card-content scroller'>
