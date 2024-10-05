@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { TaskType } from './types/taskType';
 
 // Obtener todas las tareas
 export async function getTasks() {
@@ -15,7 +16,7 @@ export async function getTasks() {
 }
 
 // Crear una nueva tarea
-export async function createTask(task) {
+export async function createTask(task: TaskType) {
     try {
         const response = await fetch("http://localhost:3000/api/tasks", {
             method: 'POST',
@@ -26,7 +27,7 @@ export async function createTask(task) {
                 title: task.title,
                 description: task.description,
                 status: task.status,
-                assignedTo: task.assignedTo,
+                assignedTo: task.assignee,
                 endDate: task.endDate,
                 priority: task.priority
             })
@@ -44,7 +45,7 @@ export async function createTask(task) {
 }
 
 // Actualizar una tarea existente
-export async function updateTask(task) {
+export async function updateTask(task: TaskType) {
     try {
         const response = await fetch(`http://localhost:3000/api/tasks/${task.id}`, {
             method: 'PUT',
@@ -55,7 +56,7 @@ export async function updateTask(task) {
                 title: task.title,
                 description: task.description,
                 status: task.status,
-                assignedTo: task.assignedTo,
+                assignedTo: task.assignee,
                 endDate: task.endDate,
                 priority: task.priority
             })
@@ -73,9 +74,9 @@ export async function updateTask(task) {
 }
 
 // Eliminar una tarea
-export async function deleteTask(taskId) {
+export async function deleteTask(task: TaskType) {
     try {
-        await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+        await fetch(`http://localhost:3000/api/tasks/${task.id}`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json"
