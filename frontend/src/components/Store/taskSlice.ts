@@ -2,8 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TaskType } from '../../types/taskType';
 import { APIgetTasks } from '../../apiInteractions';
 import { Dispatch } from 'redux';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState: TaskType[] = [];
+
+export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
+    const response = await APIgetTasks();
+    return response;
+});
 
 
 const taskSlice = createSlice({
@@ -24,11 +30,13 @@ const taskSlice = createSlice({
             state[index] = action.payload.newTask;
             console.log("Editing task in store", action.payload.oldTask, action.payload.newTask);
         },
-        getTasks: (state) => {
-            APIgetTasks().then(data => { state = data }).then(() => console.log("Getting tasks from API", state));
-        }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchTasks.fulfilled, (state, action) => {
+            return action.payload;
+        });
     }
 });
 
-export const { addTask, removeTask, editTask, getTasks } = taskSlice.actions;
+export const { addTask, removeTask, editTask } = taskSlice.actions;
 export default taskSlice.reducer;

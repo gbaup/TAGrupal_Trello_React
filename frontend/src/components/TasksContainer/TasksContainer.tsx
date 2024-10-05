@@ -1,15 +1,15 @@
 import './TasksContainer.css';
 import { TaskCard } from "../TaskCard/TaskCard.tsx";
 import { useEffect } from 'react';
+import { AppDispatch } from '../Store/store.ts';
 import { useDispatch } from 'react-redux';
-import { getTasks } from '../Store/taskSlice.ts';
+import { fetchTasks } from '../Store/taskSlice.ts';
 
 export function TasksContainer() {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
-        dispatch(getTasks());
-        console.log("sexo")
-    }, []);
+        dispatch(fetchTasks());
+    }, [dispatch]);
 
     return (
         <div className="container">
