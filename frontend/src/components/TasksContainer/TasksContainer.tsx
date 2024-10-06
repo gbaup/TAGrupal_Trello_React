@@ -9,7 +9,7 @@ export function TasksContainer() {
     const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
         dispatch(fetchTasks());
-    }, [dispatch]);
+    },);
 
     return (
         <div className="container">

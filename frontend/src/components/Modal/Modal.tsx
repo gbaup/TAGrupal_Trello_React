@@ -18,6 +18,8 @@ export const Modal = (props: IModal) => {
                     <div className="modal-content">
                         <h2>Editar tarea</h2>
 
+                        <input type="hidden" id="idEdit" />
+
                         <label>Título:</label>
                         <input type="text" id="titleEdit" placeholder="Título" />
                         <br />

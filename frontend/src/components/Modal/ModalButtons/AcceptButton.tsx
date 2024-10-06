@@ -7,8 +7,9 @@ import { editTask } from '../../../components/Store/taskSlice';
 
 
 const AcceptButton = (props: IModalButton) => {
-
+    const dispatch = useDispatch();
     const acceptButton = () => {
+
         const modalID = "taskModal" + (props.modalId);
         const modal = document.getElementById(modalID);
 
@@ -33,9 +34,9 @@ const AcceptButton = (props: IModalButton) => {
             const priority = (modal?.querySelector("#priorityEdit") as HTMLSelectElement).value;
             const status = (modal?.querySelector("#stateEdit") as HTMLSelectElement).value;
             const endDate = (modal?.querySelector("#dateEdit") as HTMLInputElement).value;
-            const id = parseInt(modalID.split("taskModal")[1]);
+            const id = parseInt((modal?.querySelector("#idEdit") as HTMLInputElement).value);
             const task = { id, title, description, assignee, endDate, priority, status };
-            useDispatch(editTask({ oldTask: id, newTask: task }));
+            dispatch(editTask({ oldTask: id, newTask: task }));
             cleanInputsEdit();
         }
         modal?.classList.remove("is-active");

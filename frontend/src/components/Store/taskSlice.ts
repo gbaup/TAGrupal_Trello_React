@@ -32,8 +32,7 @@ const taskSlice = createSlice({
             console.log("Removing task from store", action.payload);
         },
         editTask: (state, action: PayloadAction<{ oldTask: number, newTask: TaskType }>) => {
-            const index = state.findIndex(task => task.id === action.payload.oldTask);
-            state[index] = action.payload.newTask;
+            state = state.map(task => task.id === action.payload.oldTask ? action.payload.newTask : task);
             console.log("Editing task in store", action.payload.oldTask, action.payload.newTask);
         },
     },

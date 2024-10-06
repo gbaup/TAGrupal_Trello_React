@@ -8,7 +8,7 @@ export const Task = (task: TaskType) => {
         const target = event.currentTarget;
 
         modal?.classList.add('is-active');
-
+        (modal?.querySelector('#idEdit') as HTMLInputElement).value = task.id.toString();
         (modal?.querySelector('#titleEdit') as HTMLInputElement).value = target.querySelector('#title')?.textContent || '';
         (modal?.querySelector('#descriptionEdit') as HTMLInputElement).value = target.querySelector('#description')?.textContent || '';
         (modal?.querySelector('#assignEdit') as HTMLInputElement).value = target.querySelector('#assignee')?.textContent || '';
@@ -17,8 +17,6 @@ export const Task = (task: TaskType) => {
         (modal?.querySelector('#dateEdit') as HTMLInputElement).value = target.querySelector('#endDate')?.textContent || '';
 
     }
-
-    console.log(task);
 
     return (
         <div className='task' onClick={showModal}>
