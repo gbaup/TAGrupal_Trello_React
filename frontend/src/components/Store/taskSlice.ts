@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TaskType } from '../../types/taskType';
-import { APIgetTasks } from '../../apiInteractions';
+import { APIcreateTask, APIgetTasks } from '../../ApiInteractions';
 import { Dispatch } from 'redux';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
@@ -11,6 +11,11 @@ export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
     return response;
 });
 
+const addTaskAPI = createAsyncThunk('tasks/addTasks', async (task: TaskType) => {
+    const response = await APIcreateTask(task);
+    return response;
+})
+
 
 const taskSlice = createSlice({
     name: 'tasks',
@@ -18,6 +23,7 @@ const taskSlice = createSlice({
     reducers: {
         addTask: (state, action: PayloadAction<TaskType>) => {
             action.payload.id = state[state.length - 1].id + 1;
+            addTaskAPI(action.payload);
             state.push(action.payload);
             console.log("Adding task to store", action.payload);
         },
