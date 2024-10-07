@@ -282,3 +282,89 @@ p {
     overflow-x: hidden;
   }
 }
+
+@media (min-width:768px) {
+
+  body,
+  html {
+      overflow-x: auto;
+  }
+
+  #topBar {
+      margin-bottom: 1%;
+  }
+
+  .card {
+      max-height: 5rem;
+      min-height: 45%;
+      width: 30%;
+      min-width: none;
+      max-width: 19rem;
+  }
+
+  .card-content {
+      overflow-y: auto;
+      overflow-x: hidden;
+  }
+
+  #addTask {
+      position: relative;
+      margin: auto 2% 2% 80%;
+  }
+}
+
+@media (min-width:1440px) {
+  .container {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+      margin-left: 2vb;
+  }
+
+  #topBar {
+      margin-bottom: 1%;
+  }
+
+  .card h2 {
+      font-size: 1.4vb;
+  }
+
+  .card {
+      min-height: 30vb;
+      max-height: 76vb;
+      min-width: 35vb;
+  }
+
+  .card-content {
+      overflow-y: auto;
+      overflow-x: hidden;
+  }
+}
+
+@media (min-width:1740px) {
+  .container {
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      justify-content: center;
+      margin-left: auto;
+  }
+
+  #topBar {
+      margin-bottom: 1%;
+  }
+
+  .card h2 {
+      font-size: 1.4vb;
+  }
+
+  .card {
+      min-height: 30vb;
+      max-height: 76vb;
+      min-width: 35vb;
+  }
+
+  .card-content {
+      overflow-y: auto;
+      overflow-x: hidden;
+  }
+}
