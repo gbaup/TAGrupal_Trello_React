@@ -220,38 +220,7 @@ p {
   }
 }
 
-@media (min-width: 1440px) {
-  .container {
-    flex-wrap: wrap; /* Cambia a wrap para que las tarjetas se muevan a la siguiente línea si no hay espacio */
-    justify-content: flex-start;
-    align-content: flex-start;
-    margin-left: 2vb;
-  }
-
-  #topBar {
-    margin-bottom: 1%;
-  }
-
-  .card h2 {
-    font-size: 1.4vb;
-  }
-
-  .card {
-    min-height: 30vb;
-    max-height: 76vb;
-    min-width: 35vb;
-    flex: 1 1 200px; /* Flexibilidad para crecer y encoger, con un ancho base de 200px */
-    margin: 1%; /* Añade margen para el espaciado entre tarjetas */
-  }
-
-  .card-content {
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-}
-
-
-/* @media (min-width:1440px) {
+@media (min-width:1440px) {
   .container {
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -277,7 +246,7 @@ p {
     overflow-y: auto;
     overflow-x: hidden;
   }
-} */
+}
 
 @media (min-width:1740px) {
   .container {
