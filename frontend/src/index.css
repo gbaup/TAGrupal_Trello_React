@@ -61,12 +61,6 @@ html {
   .task {
     background-color: #3b4c4d;
   }
-
-  #addTask {
-    background-color: #197a71;
-  }
-
-
 }
 
 
@@ -136,19 +130,18 @@ h3 {
   align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 2%;
+  gap: 2%; 
 }
 
 .card {
   width: 85%;
   min-width: 200px;
-  min-height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 0.01rem solid black;
-  overflow-y: hidden;
   overflow-x: hidden;
+  overflow-y: auto;
   gap: 1vh;
 }
 
@@ -209,7 +202,7 @@ p {
   }
 
   .card {
-    max-height: 5rem;
+    /* max-height: 5rem;*/
     min-height: 45%;
     width: 30%;
     min-width: none;
@@ -227,7 +220,38 @@ p {
   }
 }
 
-@media (min-width:1440px) {
+@media (min-width: 1440px) {
+  .container {
+    flex-wrap: wrap; /* Cambia a wrap para que las tarjetas se muevan a la siguiente línea si no hay espacio */
+    justify-content: flex-start;
+    align-content: flex-start;
+    margin-left: 2vb;
+  }
+
+  #topBar {
+    margin-bottom: 1%;
+  }
+
+  .card h2 {
+    font-size: 1.4vb;
+  }
+
+  .card {
+    min-height: 30vb;
+    max-height: 76vb;
+    min-width: 35vb;
+    flex: 1 1 200px; /* Flexibilidad para crecer y encoger, con un ancho base de 200px */
+    margin: 1%; /* Añade margen para el espaciado entre tarjetas */
+  }
+
+  .card-content {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
+
+
+/* @media (min-width:1440px) {
   .container {
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -253,7 +277,7 @@ p {
     overflow-y: auto;
     overflow-x: hidden;
   }
-}
+} */
 
 @media (min-width:1740px) {
   .container {
@@ -283,88 +307,22 @@ p {
   }
 }
 
-@media (min-width:768px) {
-
-  body,
-  html {
-      overflow-x: auto;
-  }
-
-  #topBar {
-      margin-bottom: 1%;
-  }
-
-  .card {
-      max-height: 5rem;
-      min-height: 45%;
-      width: 30%;
-      min-width: none;
-      max-width: 19rem;
-  }
-
-  .card-content {
-      overflow-y: auto;
-      overflow-x: hidden;
-  }
-
+@media (max-width: 767px) {
   #addTask {
-      position: relative;
-      margin: auto 2% 2% 80%;
+    position: fixed; 
+    bottom: 20px;
+    right: 20px; 
+    z-index: 1000; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: #4258FF;
+    color: #F5F6FF;
+    border: none;
+    font-size: 1.5rem; 
   }
 }
 
-@media (min-width:1440px) {
-  .container {
-      flex-wrap: nowrap;
-      justify-content: flex-start;
-      align-content: flex-start;
-      margin-left: 2vb;
-  }
-
-  #topBar {
-      margin-bottom: 1%;
-  }
-
-  .card h2 {
-      font-size: 1.4vb;
-  }
-
-  .card {
-      min-height: 30vb;
-      max-height: 76vb;
-      min-width: 35vb;
-  }
-
-  .card-content {
-      overflow-y: auto;
-      overflow-x: hidden;
-  }
-}
-
-@media (min-width:1740px) {
-  .container {
-      flex-wrap: nowrap;
-      align-items: flex-start;
-      justify-content: center;
-      margin-left: auto;
-  }
-
-  #topBar {
-      margin-bottom: 1%;
-  }
-
-  .card h2 {
-      font-size: 1.4vb;
-  }
-
-  .card {
-      min-height: 30vb;
-      max-height: 76vb;
-      min-width: 35vb;
-  }
-
-  .card-content {
-      overflow-y: auto;
-      overflow-x: hidden;
-  }
-}
