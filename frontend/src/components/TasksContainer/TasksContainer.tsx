@@ -10,7 +10,6 @@ export function TasksContainer() {
             <TaskCard title="In Progress" id="in-progress" />
             <TaskCard title="Blocked" id="blocked" />
             <TaskCard title="Done" id="done" />
-
         </div>
     );
 }

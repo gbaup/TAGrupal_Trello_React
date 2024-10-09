@@ -1,51 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { TaskType } from './types/taskType';
 
-// Obtener todas las tareas
-export async function getTasks() {
+// interfaz para definir las tasks y que no salte error 
+interface Task {
+    id?: number;
+    title: string;
+    description: string;
+    status: string;
+    assignedTo: string;
+    endDate: string;
+    priority: string;
+}
+
+export async function getTasks(): Promise<Task[] | void> {
     try {
         const response = await fetch("http://localhost:3000/api/tasks");
         if (!response.ok) {
             throw new Error('Error en la solicitud GET');
         }
-        const data = await response.json();
+        const data: Task[] = await response.json();
         return data;
     } catch (error) {
         console.error('Hubo un problema con la solicitud:', error);
     }
 }
 
-// Crear una nueva tarea
-export async function createTask(task: TaskType) {
+
+export async function createTask(task: Task): Promise<Task | void> {
     try {
         const response = await fetch("http://localhost:3000/api/tasks", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                title: task.title,
-                description: task.description,
-                status: task.status,
-                assignedTo: task.assignee,
-                endDate: task.endDate,
-                priority: task.priority
-            })
+            body: JSON.stringify(task)
         });
 
         if (!response.ok) {
             throw new Error('Error al crear la tarea');
         }
 
-        const data = await response.json();
+        const data: Task = await response.json();
         return data;
     } catch (error) {
         console.error('Hubo un problema con la solicitud:', error);
     }
 }
 
-// Actualizar una tarea existente
-export async function updateTask(task: TaskType) {
+
+export async function updateTask(task: Task): Promise<Task | void> {
     try {
         const response = await fetch(`http://localhost:3000/api/tasks/${task.id}`, {
             method: 'PUT',
@@ -56,7 +58,7 @@ export async function updateTask(task: TaskType) {
                 title: task.title,
                 description: task.description,
                 status: task.status,
-                assignedTo: task.assignee,
+                assignedTo: task.assignedTo,
                 endDate: task.endDate,
                 priority: task.priority
             })
@@ -73,10 +75,9 @@ export async function updateTask(task: TaskType) {
     }
 }
 
-// Eliminar una tarea
-export async function deleteTask(task: TaskType) {
+export async function deleteTask(taskId: number): Promise<void> {
     try {
-        await fetch(`http://localhost:3000/api/tasks/${task.id}`, {
+        await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
             method: 'DELETE',
             headers: {
                 "Content-Type": "application/json"

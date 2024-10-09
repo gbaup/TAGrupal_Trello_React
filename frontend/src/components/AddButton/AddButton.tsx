@@ -9,7 +9,9 @@ const AddButton = () => {
     }
 
     return (
-        <button id="addTask" className="button is-small is-link" onClick={showModal}>+</button>
+        <div className="container-button-add-task">
+            <button id="addTask" className="button is-small is-link" onClick={showModal}>+</button>
+        </div>
     );
 }
 export default AddButton;

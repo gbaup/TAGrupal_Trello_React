@@ -216,7 +216,7 @@ p {
 
   #addTask {
     position: relative;
-    margin: auto 2% 2% 80%;
+    /* margin: auto 2% 2% 80%; */
   }
 }
 
@@ -248,31 +248,32 @@ p {
   }
 }
 
-@media (min-width:1740px) {
+@media (min-width: 1740px) {
   .container {
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    justify-content: center;
-    margin-left: auto;
+    display: flex;
+    flex-wrap: nowrap; 
+    overflow-x: auto; 
+    width: 100%; 
+    max-width: 100vw; 
+    padding: 0;      
+    gap: 20px;         /* Espacio entre las tarjetas */
+    margin: 10;         
   }
 
   #topBar {
     margin-bottom: 1%;
   }
 
-  .card h2 {
-    font-size: 1.4vb;
-  }
-
   .card {
     min-height: 30vb;
     max-height: 76vb;
     min-width: 35vb;
+    margin: 0;        
   }
 
   .card-content {
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: hidden; 
   }
 }
 
