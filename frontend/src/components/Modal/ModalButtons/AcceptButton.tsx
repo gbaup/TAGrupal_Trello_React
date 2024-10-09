@@ -1,43 +1,39 @@
 import React from 'react'
-import { IModalButton } from '../../../types/IModalButton';
-import { cleanInputsAdd, cleanInputsEdit } from '../cleanInputs';
-import { APIcreateTask } from '../../../ApiInteractions';
-import { useDispatch } from 'react-redux';
-import { editTask } from '../../../components/Store/taskSlice';
+import {IModalButton} from '../../../types/IModalButton';
+import {cleanInputsAdd, cleanInputsEdit} from '../cleanInputs';
+import {APIcreateTask, updateTask} from '../../../ApiInteractions.ts';
+import {useDispatch} from 'react-redux';
+import {editTask, addTask} from '../../../components/Store/taskSlice';
+import {createTaskDto} from "./dto/createTask.dto.ts";
+import {updateTaskDto} from "./dto/updateTask.dto.ts";
 
 
-const AcceptButton = (props: IModalButton) => {
+interface AcceptButtonProps extends IModalButton {
+    taskData: createTaskDto | updateTaskDto;
+}
+
+const AcceptButton: React.FC<AcceptButtonProps> = ({modalId, taskData}) => {
     const dispatch = useDispatch();
     const acceptButton = () => {
+        const modal = document.getElementById("taskModal" + modalId);
+        if (modalId === "Add") {
+            console.log("Adding task de la nueva forma")
+            console.log({taskData})
+            APIcreateTask(taskData)
+                .then(response => {
+                    dispatch(addTask(response));
+                    cleanInputsAdd();
+                })
+        } else if (modalId === "Edit") {
+            console.log("Updating task de la nueva forma")
+            console.log({taskData})
 
-        const modalID = "taskModal" + (props.modalId);
-        const modal = document.getElementById(modalID);
+            dispatch(editTask({newTask: taskData}));
 
-        // Add functionality to accept button
-
-
-        if (modalID === "taskModalAdd") {
-            const title = (modal?.querySelector("#titleAdd") as HTMLInputElement).value;
-            const description = (modal?.querySelector("#descriptionAdd") as HTMLInputElement).value;
-            const assignee = (modal?.querySelector("#assignAdd") as HTMLInputElement).value;
-            const priority = (modal?.querySelector("#priorityAdd") as HTMLSelectElement).value;
-            const status = (modal?.querySelector("#stateAdd") as HTMLSelectElement).value;
-            const endDate = (modal?.querySelector("#dateAdd") as HTMLInputElement).value;
-            const id = 0;
-            const task = { id, title, description, assignee, endDate, priority, status };
-            APIcreateTask(task);
-            cleanInputsAdd();
-        } else {
-            const title = (modal?.querySelector("#titleEdit") as HTMLInputElement).value;
-            const description = (modal?.querySelector("#descriptionEdit") as HTMLInputElement).value;
-            const assignee = (modal?.querySelector("#assignEdit") as HTMLInputElement).value;
-            const priority = (modal?.querySelector("#priorityEdit") as HTMLSelectElement).value;
-            const status = (modal?.querySelector("#stateEdit") as HTMLSelectElement).value;
-            const endDate = (modal?.querySelector("#dateEdit") as HTMLInputElement).value;
-            const id = parseInt((modal?.querySelector("#idEdit") as HTMLInputElement).value);
-            const task = { id, title, description, assignee, endDate, priority, status };
-            dispatch(editTask({ oldTask: id, newTask: task }));
-            cleanInputsEdit();
+            updateTask(taskData)
+                .then(response => {
+                    cleanInputsEdit();
+                })
         }
         modal?.classList.remove("is-active");
     }

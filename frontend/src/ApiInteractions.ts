@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { TaskType } from './types/taskType';
+import React, {useState, useEffect} from 'react';
+import {TaskType} from './types/taskType';
 
 const URL = 'http://localhost:3000/api'
+
 // Obtener todas las tareas
 export async function APIgetTasks() {
     try {
@@ -24,6 +25,7 @@ export async function APIgetTasks() {
 // Crear una nueva tarea
 export async function APIcreateTask(task: TaskType) {
     try {
+        console.log("Creating task");
         const response = await fetch("http://localhost:3000/api/tasks", {
             method: 'POST',
             headers: {
@@ -39,11 +41,14 @@ export async function APIcreateTask(task: TaskType) {
             })
         });
 
+        console.log({response})
+
         if (!response.ok) {
             throw new Error('Error al crear la tarea');
         }
 
         const data = await response.json();
+        console.log({data})
         return data;
     } catch (error) {
         console.error('Hubo un problema con la solicitud:', error);

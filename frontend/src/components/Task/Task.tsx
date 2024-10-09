@@ -1,21 +1,33 @@
 import React from 'react'
 import "./Task.css"
-import { TaskType } from '../../types/taskType'
+import {TaskType} from '../../types/taskType'
+import {useDispatch} from "react-redux";
+import {setSelectedTask} from "../Store/taskSlice.ts";
 
-export const Task = (task: TaskType) => {
+export const Task = ({task}: { task: TaskType }) => {
+    const dispatch = useDispatch();
+
     function showModal(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+        dispatch(setSelectedTask(task)); // Guardar la tarea seleccionada en el estado global
+
         const modal = document.getElementById('taskModalEdit');
         const target = event.currentTarget;
 
-        modal?.classList.add('is-active');
-        (modal?.querySelector('#idEdit') as HTMLInputElement).value = task.id.toString();
-        (modal?.querySelector('#titleEdit') as HTMLInputElement).value = target.querySelector('#title')?.textContent || '';
-        (modal?.querySelector('#descriptionEdit') as HTMLInputElement).value = target.querySelector('#description')?.textContent || '';
-        (modal?.querySelector('#assignEdit') as HTMLInputElement).value = target.querySelector('#assignee')?.textContent || '';
-        (modal?.querySelector('#priorityEdit') as HTMLSelectElement).value = target.querySelector('#priority')?.textContent || '';
-        (modal?.querySelector('#stateEdit') as HTMLSelectElement).value = target.querySelector('#status')?.textContent || '';
-        (modal?.querySelector('#dateEdit') as HTMLInputElement).value = target.querySelector('#endDate')?.textContent || '';
-
+        if (modal) {
+            modal.classList.add('is-active');
+            const title = modal.querySelector('#titleEdit') as HTMLInputElement;
+            if (title) title.value = task.title || '';
+            const description = modal.querySelector('#descriptionEdit') as HTMLInputElement;
+            if (description) description.value = task.description || '';
+            const assignee = modal.querySelector('#assignEdit') as HTMLInputElement;
+            if (assignee) assignee.value = task.assignee || '';
+            const priority = modal.querySelector('#priorityEdit') as HTMLSelectElement;
+            if (priority) priority.value = task.priority || '';
+            const state = modal.querySelector('#stateEdit') as HTMLSelectElement;
+            if (state) state.value = task.status || '';
+            const endDate = modal.querySelector('#dateEdit') as HTMLInputElement;
+            if (endDate) endDate.value = task.endDate || '';
+        }
     }
 
     return (
@@ -27,5 +39,5 @@ export const Task = (task: TaskType) => {
             <p id="priority" className='hide'>{task.priority}</p>
             <p id="status" className='hide'>{task.status}</p>
         </div>
-    )
+    );
 }
